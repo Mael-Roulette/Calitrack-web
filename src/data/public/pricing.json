@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Starter",
+    "price": "7.99",
+    "period": "mois",
+    "description": "Parfait pour débuter votre activité de coaching",
+    "features": [
+      "Jusqu'à 4 élèves",
+      "Programmes illimités",
+      "Bibliothèque d'exercices",
+      "Suivi de progression",
+      "Messagerie intégrée",
+      "Support par email"
+    ],
+    "cta": "Commencer",
+    "popular": false
+  },
+  {
+    "name": "Pro",
+    "price": "14.99",
+    "period": "mois",
+    "description": "Pour les coachs établis",
+    "features": [
+      "Tout du plan Start",
+      "Jusqu'à 12 élèves",
+      "Programmes illimités",
+      "Analytics & rapports détaillés",
+      "Planning & réservations",
+      "Support prioritaire"
+    ],
+    "cta": "Essayer gratuitement",
+    "popular": true
+  },
+  {
+    "name": "Enterprise",
+    "price": "29.99",
+    "period": "mois",
+    "description": "Solution complète pour les coachs bien implantés",
+    "features": [
+      "Tout du plan Pro",
+      "Eleves illimités",
+      "Support 24/7"
+    ],
+    "cta": "Nous contacter",
+    "popular": false
+  }
+]

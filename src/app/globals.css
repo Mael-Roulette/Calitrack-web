@@ -6,6 +6,7 @@
   --light-blue: #4E63D7;
   --background: #FFF9F7;
   --foreground: #132541;
+  --dark-blue: #0B1627;
 }
 
 @theme inline {
@@ -13,6 +14,7 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
   --color-light-blue: var(--light-blue);
+  --color-dark-blue: var(--dark-blue);
   --font-calsans: var(--font-cal-sans);
   --font-sora: var(--font-sora);
 }

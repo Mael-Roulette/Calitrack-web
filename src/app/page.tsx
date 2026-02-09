@@ -1,5 +1,6 @@
 import Faq from '@/components/public/Faq';
 import FeatureCard from "@/components/public/FeaturesCard";
+import { Pricing } from '@/components/public/Pricing';
 import Roadmap from '@/components/public/Roadmap';
 import calitrackFaqs from '@/data/public/faq.json';
 import featuresInfos from "@/data/public/features.json";
@@ -71,6 +72,9 @@ export default function Home () {
           <Link href="/features" aria-label="Découvrir toutes les fonctionnalités" className="underline text-center mb-16">Découvrir toutes les fonctionnalités</Link>
         </div>
       </section>
+
+      {/* Section pricing */}
+      <Pricing />
 
       {/* Section à propos */ }
       <section className="bg-secondary/12">
