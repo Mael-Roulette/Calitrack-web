@@ -6,12 +6,12 @@ import Image from "next/image";
 export type UserRole = "student" | "coach" | "user";
 
 interface RoleSelectionProps {
-  onSelectRole: (role: UserRole) => Promise<void>;
+  onSelectRole: (role: UserRole[]) => Promise<void>;
   isLoading: boolean;
 }
 
 interface RoleOption {
-  value: UserRole;
+  value: UserRole[];
   title: string;
   description: string;
   icon: string;
@@ -19,13 +19,13 @@ interface RoleOption {
 
 const roleOptions: RoleOption[] = [
   {
-    value: "user",
+    value: ["user"],
     title: "Utilisateur",
     description: "Je veux suivre mes entraînements et progresser en calisthenics",
     icon: "💪",
   },
   {
-    value: "coach",
+    value: ["user", "coach"],
     title: "Coach",
     description: "Je veux gérer mes athlètes et créer des programmes d'entraînement",
     icon: "🎯",
@@ -33,11 +33,11 @@ const roleOptions: RoleOption[] = [
 ];
 
 export default function RoleSelection({ onSelectRole, isLoading }: RoleSelectionProps) {
-  const [selectedRole, setSelectedRole] = useState<UserRole | null>(null);
+  const [selectedRoles, setSelectedRoles] = useState<UserRole[]>([]);
 
   const handleSubmit = async () => {
-    if (selectedRole) {
-      await onSelectRole(selectedRole);
+    if (selectedRoles.length > 0) {
+      await onSelectRole(selectedRoles);
     }
   };
 
@@ -65,43 +65,42 @@ export default function RoleSelection({ onSelectRole, isLoading }: RoleSelection
 
         {/* Role Cards */}
         <div className="grid md:grid-cols-2 gap-6">
-          {roleOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => setSelectedRole(option.value)}
-              disabled={isLoading}
-              className={`
-                relative p-6 border-2 rounded-lg transition-all duration-200
-                ${selectedRole === option.value
-                  ? `border-4 border-secondary shadow-lg scale-105 hover:bg-secondary/10`
-                  : `border-foreground hover:bg-foreground/10`
-                }
-                ${isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-              `}
-            >
-              {/* Icon */}
-              <div className="text-5xl mb-4 text-center">
-                {option.icon}
-              </div>
+          {roleOptions.map((option) => {
+            const isSelected =
+              selectedRoles.length === option.value.length &&
+              option.value.every(role => selectedRoles.includes(role));
 
-              {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
-                {option.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-gray-600 text-center">
-                {option.description}
-              </p>
-            </button>
-          ))}
+            return (
+              <button
+                key={option.title}
+                onClick={() => setSelectedRoles(option.value)}
+                disabled={isLoading}
+                className={`
+                  relative p-6 border-2 rounded-lg transition-all duration-200
+                  ${isSelected
+                    ? "border-4 border-secondary shadow-lg scale-105 hover:bg-secondary/10"
+                    : "border-foreground hover:bg-foreground/10"
+                  }
+                  ${isLoading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                `}
+              >
+                <div className="text-5xl mb-4 text-center">{option.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
+                  {option.title}
+                </h3>
+                <p className="text-sm text-gray-600 text-center">
+                  {option.description}
+                </p>
+              </button>
+            );
+          })}
         </div>
 
         {/* Submit Button */}
         <div className="flex justify-center">
           <button
             onClick={handleSubmit}
-            disabled={!selectedRole || isLoading}
+            disabled={selectedRoles.length === 0 || isLoading}
             className="btn-primary"
           >
             {isLoading ? "Chargement..." : "Continuer"}
