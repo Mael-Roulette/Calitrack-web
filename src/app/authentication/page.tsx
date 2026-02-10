@@ -1,7 +1,12 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { login, register, getCurrentUser } from "@/lib/authentification";
+import { loginUser, registerUser, getCurrentUser } from "@/services/authService";
+import LoginForm from "@/components/auth/LoginForm";
+import RegisterForm from "@/components/auth/RegisterForm";
+
+type AuthMode = "login" | "register";
 
 interface User {
   $id: string;
@@ -9,129 +14,147 @@ interface User {
   email: string;
 }
 
-const LoginPage = () => {
+export default function AuthenticationPage() {
   const router = useRouter();
-  const [ loggedInUser, setLoggedInUser ] = useState<User | null>( null );
-  const [ email, setEmail ] = useState<string>( "" );
-  const [ password, setPassword ] = useState<string>( "" );
-  const [ name, setName ] = useState<string>( "" );
-  const [ isLoading, setIsLoading ] = useState<boolean>( false );
-  const [ error, setError ] = useState<string>( "" );
+  const [mode, setMode] = useState<AuthMode>("login");
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   // Vérifier si l'utilisateur est déjà connecté
-  useEffect( () => {
+  useEffect(() => {
     checkUser();
-  }, [] );
+  }, []);
 
-  // Rediriger vers le dashboard si connecté
-  useEffect( () => {
-    if ( loggedInUser ) {
-      router.push( '/coach/dashboard' );
+  // Rediriger selon le statut de l'utilisateur
+  useEffect(() => {
+    if (loggedInUser) {
+      // Ajouter la redirection
     }
-  }, [ loggedInUser, router ] );
+  }, [loggedInUser, router]);
 
   const checkUser = async () => {
     const user = await getCurrentUser();
-    setLoggedInUser( user );
+    setLoggedInUser(user);
   };
 
-  const submitLogin = async ( e: React.FormEvent<HTMLButtonElement> ) => {
-    e.preventDefault();
-    setError( "" );
-    setIsLoading( true );
+  const handleLogin = async (email: string, password: string) => {
+    setError("");
+    setSuccessMessage("");
+    setIsLoading(true);
 
     try {
-      await login( email, password );
+      await loginUser(email, password);
       const user = await getCurrentUser();
-      setLoggedInUser( user );
-      setEmail( "" );
-      setPassword( "" );
-    } catch ( err ) {
-      setError( "Login failed. Please check your credentials." );
-      console.error( err );
+      setLoggedInUser(user);
+      setSuccessMessage("Connexion réussie !");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur de connexion");
     } finally {
-      setIsLoading( false );
+      setIsLoading(false);
     }
   };
 
-  const submitRegister = async ( e: React.MouseEvent<HTMLButtonElement> ) => {
-    e.preventDefault();
-    setError( "" );
-    setIsLoading( true );
+  const handleRegister = async (
+    email: string,
+    password: string,
+    name: string
+  ) => {
+    setError("");
+    setSuccessMessage("");
+    setIsLoading(true);
 
     try {
-      await register( email, password, name );
+      await registerUser(email, password, name);
       const user = await getCurrentUser();
-      setLoggedInUser( user );
-      setEmail( "" );
-      setPassword( "" );
-      setName( "" );
-    } catch ( err ) {
-      setError( "Registration failed. Please try again." );
-      console.error( err );
+      setLoggedInUser(user);
+      setSuccessMessage("Inscription réussie !");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur d'inscription");
     } finally {
-      setIsLoading( false );
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-6 text-center">Authentication</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-t lg:bg-radial-[at_50%_90%] from-[#4E63D7] from-3% to-foreground to-80% lg:to-70% py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h1 className="title-hero font-bold text-center text-background">
+            Calitrack
+          </h1>
+          <p className="mt-2 text-center text-background">
+            {mode === "login"
+              ? "Connectez-vous à votre compte"
+              : "Créez votre compte"}
+          </p>
+        </div>
 
-        { error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            { error }
-          </div>
-        ) }
-
-        <form className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            value={ email }
-            onChange={ ( e: React.ChangeEvent<HTMLInputElement> ) => setEmail( e.target.value ) }
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={ password }
-            onChange={ ( e: React.ChangeEvent<HTMLInputElement> ) => setPassword( e.target.value ) }
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Name (for registration)"
-            value={ name }
-            onChange={ ( e: React.ChangeEvent<HTMLInputElement> ) => setName( e.target.value ) }
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <div className="flex gap-3">
+        <div className="bg-background rounded-lg shadow-md p-6">
+          {/* Onglets de navigation */}
+          <div className="flex border-b border-gray-200 mb-6">
             <button
-              type="submit"
-              onClick={ submitLogin }
-              disabled={ isLoading || !email || !password }
-              className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => {
+                setMode("login");
+                setError("");
+                setSuccessMessage("");
+              }}
+              className={`flex-1 py-2 px-4 text-center font-medium transition-colors ${
+                mode === "login"
+                  ? "border-b-2 border-light-blue text-light-blue"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
             >
-              { isLoading ? "Loading..." : "Login" }
+              Connexion
             </button>
             <button
-              type="button"
-              onClick={ submitRegister }
-              disabled={ isLoading || !email || !password || !name }
-              className="flex-1 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => {
+                setMode("register");
+                setError("");
+                setSuccessMessage("");
+              }}
+              className={`flex-1 py-2 px-4 text-center font-medium transition-colors ${
+                mode === "register"
+                  ? "border-b-2 border-secondary text-secondary"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
             >
-              { isLoading ? "Loading..." : "Register" }
+              Inscription
             </button>
           </div>
-        </form>
+
+          {/* Messages d'erreur et de succès */}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
+
+          {successMessage && (
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+              {successMessage}
+            </div>
+          )}
+
+          {/* Formulaires */}
+          {mode === "login" ? (
+            <LoginForm onSubmit={handleLogin} isLoading={isLoading} />
+          ) : (
+            <RegisterForm onSubmit={handleRegister} isLoading={isLoading} />
+          )}
+        </div>
+
+        {/* Lien de retour */}
+        <div className="text-center">
+          <a
+            href="/"
+            className="text-background underline hover:opacity-70 transition-all"
+          >
+            Retour à l'accueil
+          </a>
+        </div>
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}
