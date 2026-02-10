@@ -1,10 +1,9 @@
 'use client'
 
 import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { usePathname } from "next/navigation";
 
 // Liens de navigation
@@ -25,14 +24,28 @@ const LOGO_CONFIG = {
 
 export default function Header () {
   const [ mobileMenuOpen, setMobileMenuOpen ] = useState( false );
+  const [ isScrolled, setIsScrolled ] = useState( false );
   const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
-  // Mémoisation des handlers pour éviter les re-renders
-  const openMobileMenu = useCallback( () => setMobileMenuOpen( true ), [] );
-  const closeMobileMenu = useCallback( () => setMobileMenuOpen( false ), [] );
+  // Gérer le scroll pour changer la couleur du header
+  useEffect( () => {
+    if ( !isHomePage ) return;
+
+    const handleScroll = () => {
+      // Hauteur de la hero section = 100vh - 88px (hauteur du header)
+      const heroHeight = window.innerHeight - 88;
+      setIsScrolled( window.scrollY > heroHeight );
+    };
+
+    window.addEventListener( 'scroll', handleScroll );
+    return () => window.removeEventListener( 'scroll', handleScroll );
+  }, [ isHomePage ] );
+
+  const headerBgClass = isHomePage && !isScrolled ? 'bg-dark-blue' : 'bg-foreground';
 
   return (
-    <header className="bg-foreground sticky top-0 left-0 w-full z-5">
+    <header className={ `${headerBgClass} sticky top-0 left-0 w-full z-50 transition-colors duration-300` }>
       <nav
         aria-label="Navigation principale"
         className="mx-auto container flex items-center justify-between py-6 px-5"
@@ -55,103 +68,90 @@ export default function Header () {
         </div>
 
         {/* Bouton menu mobile */ }
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={ openMobileMenu }
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-background hover:text-background/80 transition-colors"
-            aria-label="Ouvrir le menu de navigation"
+        <button
+          className="
+            group
+            z-100
+            inline-flex w-12 h-12
+            items-center justify-center
+            rounded-xl
+            bg-dark-blue backdrop-blur
+            lg:hidden
+            text-background
+            transition
+          "
+          aria-pressed={ mobileMenuOpen }
+          aria-label="Menu"
+          onClick={ () => setMobileMenuOpen( ( v ) => !v ) }
+        >
+          <svg
+            className="w-6 h-6 fill-current pointer-events-none"
+            viewBox="0 0 16 16"
           >
-            <Bars3Icon aria-hidden="true" className="h-10 w-10" />
-          </button>
-        </div>
+            {/* Barre du haut */}
+            <rect
+              y="7.5"
+              width="9"
+              height="1"
+              rx="0.5"
+              className="
+        origin-center
+        -translate-y-[4px]
+        translate-x-[7px]
+        transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)]
+        group-aria-pressed:translate-x-0
+        group-aria-pressed:translate-y-0
+        group-aria-pressed:rotate-[315deg]
+      "
+            />
+
+            {/* Barre centrale */}
+            <rect
+              y="7.5"
+              width="16"
+              height="1"
+              rx="0.5"
+              className="
+        origin-center
+        transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)]
+        group-aria-pressed:rotate-45
+      "
+            />
+
+            {/* Barre du bas */}
+            <rect
+              y="7.5"
+              width="9"
+              height="1"
+              rx="0.5"
+              className="
+        origin-center
+        translate-y-[4px]
+        transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)]
+        group-aria-pressed:translate-y-0
+        group-aria-pressed:rotate-[135deg]
+      "
+            />
+          </svg>
+
+        </button>
 
         {/* Navigation desktop */ }
-        <nav className="hidden lg:flex lg:gap-x-8" aria-label="Navigation principale">
+        <nav className={ `fixed top-0 right-0 transition-all ${ mobileMenuOpen ? "bg-foreground translate-x-0" : "translate-x-full"} lg:translate-x-0 w-full h-dvh lg:w-fit lg:h-full p-8 lg:p-0 z-10 lg:relative` } aria-label="Navigation principale">
+          <ul className="flex flex-col gap-6 pt-16 lg:pt-0 lg:flex-row lg:justify-end lg:gap-12 h-full">
           { navigationLinks.map( ( { href, label } ) => (
-            <Link
-              key={ href }
-              href={ href }
-              className={ `text-sm font-semibold leading-6 text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors ${pathname === href ? 'text-secondary' : ''}` }
-            >
-              { label }
-            </Link>
+            <li key={ href }>
+              <Link
+                href={ href }
+                className={ `font-semibold leading-6 text-background hover:text-secondary rounded-lg px-2 py-1 transition-all ${pathname === href ? 'text-secondary' : ''}` }
+              >
+                { label }
+              </Link>
+            </li>
           ) ) }
+          </ul>
         </nav>
-
-        {/* Lien de connexion desktop */ }
-        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="/signin"
-            className="btn-primary"
-          >
-            Se connecter
-          </Link>
-        </div> */}
       </nav>
-
-      {/* Menu mobile */ }
-      <Dialog
-        open={ mobileMenuOpen }
-        onClose={ closeMobileMenu }
-        className="lg:hidden"
-        aria-labelledby="mobile-menu-title"
-      >
-        <div className="fixed inset-0 z-50 bg-black/20" aria-hidden="true" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-foreground px-5 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          {/* En-tête du menu mobile */ }
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              className="rounded-lg"
-              onClick={ closeMobileMenu }
-              aria-label="Retour à l'accueil"
-            >
-              <Image
-                src={ LOGO_CONFIG.src }
-                width={ LOGO_CONFIG.width }
-                height={ LOGO_CONFIG.height }
-                alt={ LOGO_CONFIG.alt }
-              />
-            </Link>
-            <button
-              type="button"
-              onClick={ closeMobileMenu }
-              className="-m-2.5 rounded-md p-2.5 text-background hover:text-background/80 transition-colors"
-              aria-label="Fermer le menu de navigation"
-            >
-              <XMarkIcon aria-hidden="true" className="h-10 w-10" />
-            </button>
-          </div>
-
-          {/* Contenu du menu mobile */ }
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-background/20">
-              <nav className="space-y-2 py-6" aria-label="Navigation mobile">
-                { navigationLinks.map( ( { href, label } ) => (
-                  <Link
-                    key={ href }
-                    href={ href }
-                    onClick={ closeMobileMenu }
-                    className={ `-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 transition-colors ${pathname === href ? 'text-secondary' : ''}` }
-                  >
-                    { label }
-                  </Link>
-                ) ) }
-              </nav>
-              {/* <div className="py-6">
-                <Link
-                  href="/signin"
-                  onClick={ closeMobileMenu }
-                  className="btn-primary"
-                >
-                  Se connecter
-                </Link>
-              </div> */}
-            </div>
-          </div>
-        </DialogPanel>
-      </Dialog>
     </header>
   )
 }
