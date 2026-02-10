@@ -143,7 +143,7 @@ export default function Header () {
             <li key={ href }>
               <Link
                 href={ href }
-                className={ `font-semibold leading-6 text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors ${pathname === href ? 'text-secondary' : ''}` }
+                className={ `font-semibold leading-6 text-background hover:text-secondary rounded-lg px-2 py-1 transition-all ${pathname === href ? 'text-secondary' : ''}` }
               >
                 { label }
               </Link>
