@@ -50,7 +50,7 @@ export default function HeroSection () {
   return (
     <section className="relative min-h-[calc(100dvh-88px)]
                         bg-gradient-to-t lg:bg-radial-[at_50%_90%] from-light-blue from-3% to-dark-blue to-80% lg:to-70%
-                        px-2 flex flex-col items-center pt-20 lg:pt-28">
+                        px-2 flex flex-col items-center pt-20 lg:pt-28 isolate">
       <div
         ref={ badgeRef }
         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"

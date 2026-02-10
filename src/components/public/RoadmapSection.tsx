@@ -29,6 +29,7 @@ export default function RoadmapSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation du sous-titre
@@ -42,6 +43,7 @@ export default function RoadmapSection () {
         duration: 0.8,
         delay: 0.2,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation de la roadmap
@@ -55,6 +57,7 @@ export default function RoadmapSection () {
         duration: 1,
         delay: 0.3,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation du CTA
@@ -67,6 +70,7 @@ export default function RoadmapSection () {
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
+        clearProps: "all",
       } );
     } );
 
@@ -74,7 +78,7 @@ export default function RoadmapSection () {
   }, [] );
 
   return (
-    <section className="section-wrapper">
+    <section className="section-wrapper isolate">
       <h2
         ref={ titleRef }
         className='title-section mb-2 text-center font-calsans'

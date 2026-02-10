@@ -29,6 +29,7 @@ export default function AboutSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation du titre
@@ -41,6 +42,7 @@ export default function AboutSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation des paragraphes
@@ -56,6 +58,7 @@ export default function AboutSection () {
             duration: 0.8,
             delay: index * 0.1,
             ease: "power3.out",
+            clearProps: "all",
           } );
         }
       } );
@@ -70,6 +73,7 @@ export default function AboutSection () {
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
+        clearProps: "all",
       } );
     } );
 
@@ -77,7 +81,7 @@ export default function AboutSection () {
   }, [] );
 
   return (
-    <section className="bg-secondary/12">
+    <section className="bg-secondary/12 isolate">
       <div className="section-wrapper grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
         <div
           ref={ imageRef }

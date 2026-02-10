@@ -32,6 +32,7 @@ export default function FaqSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation de la description
@@ -45,6 +46,7 @@ export default function FaqSection () {
         duration: 0.8,
         delay: 0.2,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation de la FAQ
@@ -58,6 +60,7 @@ export default function FaqSection () {
         duration: 1,
         delay: 0.3,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation du bouton
@@ -70,6 +73,7 @@ export default function FaqSection () {
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
+        clearProps: "all",
       } );
 
       // Animation de l'image
@@ -82,6 +86,7 @@ export default function FaqSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all",
       } );
     } );
 
@@ -89,7 +94,7 @@ export default function FaqSection () {
   }, [] );
 
   return (
-    <section className="bg-secondary/12">
+    <section className="bg-secondary/12 isolate">
       <div className="section-wrapper grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
         <div ref={ contentRef }>
           <h2

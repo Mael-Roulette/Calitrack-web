@@ -28,6 +28,7 @@ export default function FeaturesSection () {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        clearProps: "all", // Nettoie les propriétés après l'animation
       } );
 
       // Animation des cartes avec un décalage
@@ -43,6 +44,7 @@ export default function FeaturesSection () {
             duration: 0.8,
             delay: index * 0.15,
             ease: "power3.out",
+            clearProps: "all",
           } );
         }
       } );
@@ -57,6 +59,7 @@ export default function FeaturesSection () {
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
+        clearProps: "all",
       } );
     } );
 
@@ -64,7 +67,7 @@ export default function FeaturesSection () {
   }, [] );
 
   return (
-    <section id='features'>
+    <section id='features' className="isolate">
       <h2
         ref={ titleRef }
         className="title-section font-calsans mt-8 mb-6 lg:mt-16 lg:mb-10 text-center"
