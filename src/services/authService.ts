@@ -1,4 +1,4 @@
-import { ID, account } from "@/lib/appwrite";
+import { ID, account, tablesDB } from "@/lib/appwrite";
 import { AppwriteException } from "appwrite";
 
 // Types pour les erreurs
@@ -54,7 +54,18 @@ export const registerUser = async (
 ) => {
   try {
     // Créer le compte
-    await account.create({userId: ID.unique(), email, password, name});
+    const newAccount = await account.create({userId: ID.unique(), email, password, name});
+
+    await tablesDB.createRow({
+      databaseId: process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+      tableId: process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID!,
+      rowId: ID.unique(),
+      data: {
+        email,
+        name,
+        accountId: newAccount.$id
+      }
+    })
 
     // Connexion automatique après l'inscription
     return await loginUser(email, password);
