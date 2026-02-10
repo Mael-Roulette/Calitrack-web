@@ -19,28 +19,24 @@ export default function ProtectedRoute({
     const checkAuth = async () => {
       const user = await getCurrentUser();
 
-      console.log( user)
-
       if (!user) {
         router.push("/authentication");
         return;
       }
 
-      // Logique de redirection forcée si pas de rôle
       if (user.roles.length === 0) {
         router.push("/role-selection");
         return;
       }
 
-      // Vérification des accès spécifiques
-      if (user.roles.includes("coach")) {
-        router.push("/user/dashboard"); // Redirige vers user si pas coach
+      if (requiredRoles && !requiredRoles.some(r => user.roles.includes(r))) {
+        router.push("/unauthorized");
         return;
       }
 
       setLoading(false);
     };
-    
+
     checkAuth();
   }, [router, requiredRoles]);
 

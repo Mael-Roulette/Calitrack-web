@@ -1,12 +1,12 @@
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
-export default function CoachLayout ( {
+export default function UserLayout ( {
   children,
 }: Readonly<{
   children: React.ReactNode;
 }> ) {
   return (
-    <ProtectedRoute requiredRoles={ [ "coach" ]}>
+    <ProtectedRoute requiredRoles={ [ "user" ]}>
       { children }
     </ProtectedRoute>
   );
