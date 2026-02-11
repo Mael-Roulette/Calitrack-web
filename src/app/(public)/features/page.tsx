@@ -89,7 +89,7 @@ export default function Features () {
       </section>
 
 
-      <DownloadSection background="bg" />
+      {/* <DownloadSection background="bg" /> */}
     </main>
   )
 }
