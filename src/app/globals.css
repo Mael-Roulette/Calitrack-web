@@ -42,7 +42,7 @@ body {
 @layer components {
   /* Bouton principal */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
+    @apply inline-flex items-center justify-center px-5 py-2 text-sm font-semibold rounded-md;
     @apply bg-secondary text-background;
     @apply border-2 border-secondary;
     @apply hover:bg-background hover:text-secondary;
@@ -53,20 +53,30 @@ body {
 
   /* Bouton secondaire */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
+    @apply inline-flex items-center justify-center px-5 py-2 text-sm font-semibold rounded-md;
     @apply bg-background text-secondary;
     @apply border-2 border-secondary;
-    @apply hover:bg-secondary hover:text-foreground;
+    @apply hover:bg-secondary hover:text-background;
     @apply active:bg-secondary/20 active:scale-95;
     @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:active:scale-100;
     @apply transition-all duration-300 ease-in-out;
   }
 
   .btn-tertiary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
+    @apply inline-flex items-center justify-center px-5 py-2 text-sm font-semibold rounded-md;
     @apply bg-inherit text-foreground;
     @apply border-2 border-foreground;
     @apply hover:bg-foreground hover:text-background;
+    @apply active:bg-foreground/20 active:scale-95;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:active:scale-100;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .btn-quartenary {
+    @apply inline-flex items-center justify-center px-5 py-2 text-sm font-semibold rounded-md;
+    @apply bg-inherit text-background;
+    @apply border-2 border-background;
+    @apply hover:bg-background hover:text-foreground;
     @apply active:bg-foreground/20 active:scale-95;
     @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:active:scale-100;
     @apply transition-all duration-300 ease-in-out;

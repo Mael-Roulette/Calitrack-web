@@ -2,19 +2,25 @@
   {
     "id": 1,
     "icon": "trainings.png",
-    "title": "Ajout des combos",
-    "description": "Implémentation de la création de combos personnalisés dans les entraînements."
+    "title": "Refonte graphique & améliorations",
+    "description": "Nouvelle interface plus moderne et intuitive, améliorations globales des fonctionnalités."
   },
   {
     "id": 2,
     "icon": "history.png",
     "title": "Historique des entraînements",
-    "description": "Ajout d'un historique permettant de consulter et suivre les entraînements passés."
+    "description": "Arrivée de l'historique complet des entraînements pour consulter, analyser et suivre votre progression dans le temps."
   },
   {
     "id": 3,
     "icon": "session.png",
     "title": "Sessions améliorées",
-    "description": "Ajout du suivi des séries et intégration d'un timer pour rendre les sessions plus complètes."
+    "description": "Enregistrement détaillé des performances pendant chaque session d'entraînement afin de mieux mesurer vos progrès."
+  },
+  {
+    "id": 4,
+    "icon": "trainings.png",
+    "title": "Version web & espace coach",
+    "description": "Une version web de Calitrack arrive prochainement avec un espace dédié aux coachs pour gérer leurs élèves."
   }
 ]
