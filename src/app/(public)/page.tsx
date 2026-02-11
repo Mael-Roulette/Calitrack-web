@@ -3,6 +3,7 @@ import DownloadSection from '@/components/public/DownloadSection';
 import FaqSection from '@/components/public/FaqSection';
 import FeaturesSection from '@/components/public/FeaturesSection';
 import HeroSection from '@/components/public/HeroSection';
+import { PricingSection } from '@/components/public/PricingSection';
 import RoadmapSection from '@/components/public/RoadmapSection';
 import { Metadata } from 'next';
 
@@ -37,6 +38,7 @@ export default function Home () {
       <FeaturesSection />
       <AboutSection />
       <RoadmapSection />
+      <PricingSection />
       <FaqSection />
       {/* <DownloadSection /> */}
     </main>
