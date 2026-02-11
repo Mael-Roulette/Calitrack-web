@@ -79,7 +79,7 @@ export default function Footer () {
         </div>
       </div>
       <div className="py-4">
-        <p className="text-md font-calsans text-center">© 2025 Calitrack - Tous droits réservés</p>
+        <p className="text-md font-calsans text-center">© 2026 Calitrack - Tous droits réservés</p>
         <p className="text-sm text-center">Une création signée Maël Roulette</p>
       </div>
     </ footer>
