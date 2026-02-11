@@ -38,7 +38,7 @@ export default function Home () {
       <AboutSection />
       <RoadmapSection />
       <FaqSection />
-      <DownloadSection />
+      {/* <DownloadSection /> */}
     </main>
   );
 }

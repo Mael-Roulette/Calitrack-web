@@ -80,18 +80,18 @@ export default function HeroSection () {
         className="mt-5 pb-20 flex flex-wrap justify-center items-center gap-4"
       >
         <Link
-          href="https://forms.gle/vBnbwfF6Rv28xgtL8"
-          aria-label="Télécharger l'application"
+          href="/about"
+          aria-label="À propos"
           className="btn-primary hover:bg-inherit hover:text-background"
         >
-          Commencer gratuitement <ArrowRight className="ml-2 h-5 w-5" />
+          À propos
         </Link>
         <Link
           href="/features"
           aria-label="Découvrir les fonctionnalités"
           className="btn-quartenary"
         >
-          En savoir plus
+          Découvrir les fonctionnalités <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </div>
 

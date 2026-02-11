@@ -87,7 +87,7 @@ export default function About () {
 
       </section>
 
-      <DownloadSection background="bg" />
+      {/* <DownloadSection background="bg" /> */}
     </main>
   )
 }

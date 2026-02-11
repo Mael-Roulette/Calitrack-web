@@ -131,7 +131,6 @@ export default function AboutSection () {
             className='flex flex-wrap gap-4'
           >
             <Link href="/about" aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
-            <Link href="https://forms.gle/vBnbwfF6Rv28xgtL8" aria-label="Télécharger l'application" className='btn-secondary'>Tester la bêta</Link>
           </div>
         </div>
       </div>
