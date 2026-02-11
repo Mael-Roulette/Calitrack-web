@@ -1,4 +1,5 @@
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import { TanstackProvider } from "@/components/providers/TanstackProvider";
 
 export default function CoachLayout ( {
   children,
@@ -7,7 +8,9 @@ export default function CoachLayout ( {
 }> ) {
   return (
     <ProtectedRoute requiredRoles={ [ "coach" ]}>
-      { children }
+      <TanstackProvider>
+        { children }
+      </TanstackProvider>
     </ProtectedRoute>
   );
 }

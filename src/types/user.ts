@@ -3,5 +3,6 @@ export interface UserDoc {
   name: string;
   email: string;
   accountId: string;
+  avatar: string;
   roles: ("user" | "student" | "coach")[];
 }
