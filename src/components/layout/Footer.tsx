@@ -16,10 +16,10 @@ export default function Footer () {
 
   // Liens légaux
   const legalLinks = [
-    { href: '/legal-notices', label: 'Mentions légales' },
-    { href: '/privacy-policy', label: 'Politique de confidentialité' },
-    // { href: '/roadmap', label: 'Roadmap' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/legal-notices', label: 'Mentions légales', target: '_self' },
+    { href: '/privacy-policy', label: 'Politique de confidentialité', target: '_self' },
+    { href: 'https://kan.bn/3oyl7c3glvz3/calitrack', label: 'Roadmap', target: '_blank' },
+    { href: '/contact', label: 'Contact', target: '_self' }
   ] as const;
 
   return (
@@ -63,10 +63,11 @@ export default function Footer () {
             <p className="text-background font-calsans text-xl">Légals & Infos pratiques</p>
             <nav className="flex flex-col gap-x-8" aria-label="Navigation principale">
               <ul className="list-disc list-inside mt-2 text-background">
-                { legalLinks.map( ( { href, label } ) => (
+                { legalLinks.map( ( { href, label, target } ) => (
                   <li key={ href }>
                     <Link
                       href={ href }
+                      target={ target }
                       className={ `hover:text-background/50 rounded-lg px-2 py-1 transition-colors  ${pathname === href ? 'text-secondary' : ''}` }
                     >
                       { label }

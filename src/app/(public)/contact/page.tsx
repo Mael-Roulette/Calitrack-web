@@ -85,6 +85,14 @@ export default function Contact () {
           </div>
         </div>
       </section>
+
+      <section className="bg-secondary/12">
+        <div className="section-wrapper flex flex-col justify-center items-center">
+          <h2 className="title-section font-calsans mb-4">Tu veux découvrir ce qui arrive <span>prochainement</span> ?</h2>
+          <p className="mb-2">Découvre sur quoi je travaille et ce qui va suivre ! </p>
+          <Link href="https://kan.bn/3oyl7c3glvz3/calitrack" target="_blank" className="btn-secondary">Ma roadmap</Link>
+        </div>
+      </section>
     </main>
   )
 }
