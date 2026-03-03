@@ -99,7 +99,10 @@ export default function RoadmapSection () {
         className='mt-8 flex flex-col justify-center items-center gap-4'
       >
         <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à me le partager !</p>
-        <Link href="/contact" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
+        <div className="flex flex-wrap gap-5">
+          <Link href="/contact" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
+          <Link href="https://kan.bn/3oyl7c3glvz3/calitrack" target="_blank" aria-label="Découvrir la suite" className='btn-primary'>Découvrir ce qui arrive</Link>
+        </div>
       </div>
     </section>
   )
