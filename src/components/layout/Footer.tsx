@@ -22,6 +22,13 @@ export default function Footer () {
     { href: '/contact', label: 'Contact', target: '_self' }
   ] as const;
 
+  // Lien soutien
+  const supportLinks = [
+    { href: 'https://www.instagram.com/calitrack_app/', label: 'Instagram Calitrack', target: '_blank' },
+    { href: 'https://www.instagram.com/mael_s.w/', label: 'Instagram Mael_s.w', target: '_blank' },
+    { href: 'https://buymeacoffee.com/mael_rltt', label: 'Buy Me A Coffee', target: '_blank' },
+  ]
+
   return (
     <footer>
       <div className="bg-gradient-to-b lg:bg-radial-[at_50%_-50%] from-[#4E63D7] from-1% lg:from-10% to-foreground to-50% lg:to-70%">
@@ -64,6 +71,24 @@ export default function Footer () {
             <nav className="flex flex-col gap-x-8" aria-label="Navigation principale">
               <ul className="list-disc list-inside mt-2 text-background">
                 { legalLinks.map( ( { href, label, target } ) => (
+                  <li key={ href }>
+                    <Link
+                      href={ href }
+                      target={ target }
+                      className={ `hover:text-background/50 rounded-lg px-2 py-1 transition-colors  ${pathname === href ? 'text-secondary' : ''}` }
+                    >
+                      { label }
+                    </Link>
+                  </li>
+                ) ) }
+              </ul>
+            </nav>
+          </div>
+          <div>
+            <p className="text-background font-calsans text-xl">Envie de me soutenir ?</p>
+            <nav className="flex flex-col gap-x-8" aria-label="Navigation principale">
+              <ul className="list-disc list-inside mt-2 text-background">
+                { supportLinks.map( ( { href, label, target } ) => (
                   <li key={ href }>
                     <Link
                       href={ href }
