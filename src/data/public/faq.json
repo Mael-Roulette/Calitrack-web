@@ -2,12 +2,12 @@
   {
     "id": "pricing",
     "question": "Calitrack est-il gratuit ?",
-    "answer": "Oui ! Calitrack propose une version gratuite avec toutes les fonctionnalités essentielles pour suivre tes entraînements mais une version premium est en préparation pour aller encore plus loin."
+    "answer": "Oui ! Calitrack propose une version gratuite avec toutes les fonctionnalités essentielles pour suivre tes entraînements."
   },
   {
     "id": "compatibility",
     "question": "Sur quelles plateformes Calitrack est-il disponible ?",
-    "answer": "Actuellement, Calitrack est disponible seulement sur Android mais la version iOS arrive bientôt."
+    "answer": "Actuellement, Calitrack est en version de test pour Android. Bientôt l'application sera disponible sur le PlayStore et par la suite sur l'AppStore."
   },
   {
     "id": "beginner",
@@ -22,11 +22,11 @@
   {
     "id": "language",
     "question": "L'application est-elle disponible dans plusieurs langues ?",
-    "answer": "Pour le moment, Calitrack est uniquement disponible en français. Une version anglaise est prévue prochainement pour toucher encore plus de pratiquants."
+    "answer": "Pour le moment, Calitrack est uniquement disponible en français."
   },
   {
     "id": "offline",
     "question": "Puis-je utiliser Calitrack sans connexion internet ?",
-    "answer": "Pour le moment non. Une connexion internet est nécessaire pour accéder à tes données et suivre tes entraînements. Mais une version hors ligne devrait arriver rapidement."
+    "answer": "Pour le moment non. Une connexion internet est nécessaire pour accéder à tes données et suivre tes entraînements."
   }
 ]

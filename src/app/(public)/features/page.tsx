@@ -49,8 +49,8 @@ export default function Features () {
           <p className="mb-2">Ici, c&apos;est toi qui décides de la façon dont tu veux t&apos;entraîner. Tu construis tes séances comme tu l&apos;entends, en fonction de ton niveau, de tes envies et de tes objectifs.</p>
           <ul className="list-disc list-inside mb-4 pl-4">
             <li className="mb-2"><strong>Choisis librement tes exercices :</strong> sélectionne ceux qui correspondent le mieux à ton style ou à ta progression, que ce soit des bases solides ou des mouvements plus avancés.</li>
-            <li className="mb-2"><strong>Planifie-les dans ta semaine :</strong> organise tes entraînements en fonction de ton emploi du temps, que tu t&apos;entraînes trois fois par semaine ou tous les jours.</li>
-            <li><strong>Retrouve tout dans un calendrier :</strong> visualise clairement tes séances et garde une vue d&apos;ensemble pour mieux rester régulier et motivé.</li>
+            <li className="mb-2"><strong>Organise ton planning sur 4 semaines :</strong> répartis tes séances comme tu le souhaites, ajuste-les à ton rythme et modifie ton programme à tout moment.</li>
+            <li><strong>Retrouve ton planning et ton historique :</strong> visualise tes prochaines séances, consulte tes entraînements passés et garde une vue d'ensemble pour rester motivé.</li>
           </ul>
           <p>Ton entraînement devient vraiment personnel : tu adaptes l&apos;application à ta manière de progresser, pas l&apos;inverse.</p>
         </div>

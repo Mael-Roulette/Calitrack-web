@@ -16,11 +16,5 @@
     "icon": "session.png",
     "title": "Sessions améliorées",
     "description": "Enregistrement détaillé des performances pendant chaque session d'entraînement afin de mieux mesurer vos progrès."
-  },
-  {
-    "id": 4,
-    "icon": "trainings.png",
-    "title": "Version web & espace coach",
-    "description": "Une version web de Calitrack arrive prochainement avec un espace dédié aux coachs pour gérer leurs élèves."
   }
 ]
