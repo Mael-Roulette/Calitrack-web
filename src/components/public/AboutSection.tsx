@@ -118,7 +118,7 @@ export default function AboutSection () {
             ref={ ( el ) => { paragraphsRef.current[2] = el } }
             className='mb-3'
           >
-            Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour les pratiquants comme pour les coachs.
+            Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour toujours proposer mieux.
           </p>
           <p
             ref={ ( el ) => { paragraphsRef.current[3] = el } }
